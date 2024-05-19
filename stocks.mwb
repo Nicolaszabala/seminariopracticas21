@@ -1,0 +1,104 @@
+-- Crear la base de datos
+CREATE DATABASE Stocks;
+USE Stocks;
+
+-- Crear tabla Usuario
+CREATE TABLE Usuario (
+    ID_Usuario INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    Correo_Electronico VARCHAR(100) NOT NULL UNIQUE,
+    Contrasena VARCHAR(255) NOT NULL,
+    Fecha_Creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Crear tabla Stock
+CREATE TABLE Stock (
+    ID_Stock INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    Categoria VARCHAR(50) NOT NULL,
+    Marca VARCHAR(50) NOT NULL,
+    Precio DECIMAL(10, 2) NOT NULL,
+    Cantidad_Disponible INT NOT NULL,
+    Descripcion TEXT
+);
+
+-- Crear tabla Busqueda
+CREATE TABLE Busqueda (
+    ID_Busqueda INT AUTO_INCREMENT PRIMARY KEY,
+    ID_Usuario INT,
+    Fecha_Hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Criterio_Nombre VARCHAR(100),
+    Criterio_Categoria VARCHAR(50),
+    Criterio_Marca VARCHAR(50),
+    Criterio_Precio DECIMAL(10, 2),
+    FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario)
+);
+
+-- Crear tabla Resultado_Busqueda
+CREATE TABLE Resultado_Busqueda (
+    ID_Resultado INT AUTO_INCREMENT PRIMARY KEY,
+    ID_Busqueda INT,
+    ID_Stock INT,
+    FOREIGN KEY (ID_Busqueda) REFERENCES Busqueda(ID_Busqueda),
+    FOREIGN KEY (ID_Stock) REFERENCES Stock(ID_Stock)
+);
+
+-- Insertar Usuarios
+INSERT INTO Usuario (Nombre, Correo_Electronico, Contrasena) VALUES
+('Juan Perez', 'juan.perez@example.com', 'hashed_password_1'),
+('Maria Gomez', 'maria.gomez@example.com', 'hashed_password_2'),
+('Carlos Lopez', 'carlos.lopez@example.com', 'hashed_password_3');
+
+-- Insertar Stocks
+INSERT INTO Stock (Nombre, Categoria, Marca, Precio, Cantidad_Disponible, Descripcion) VALUES
+('Laptop HP', 'Electrónica', 'HP', 1200.00, 10, 'Laptop HP con 16GB RAM y 512GB SSD'),
+('Smartphone Samsung', 'Electrónica', 'Samsung', 800.00, 15, 'Samsung Galaxy S21'),
+('Televisor LG', 'Electrónica', 'LG', 600.00, 5, 'Televisor LG 55 pulgadas 4K');
+
+-- Insertar Búsquedas
+INSERT INTO Busqueda (ID_Usuario, Criterio_Nombre, Criterio_Categoria, Criterio_Marca, Criterio_Precio) VALUES
+(1, 'Laptop', 'Electrónica', 'HP', 1300.00),
+(2, 'Smartphone', 'Electrónica', 'Samsung', 900.00);
+
+-- Insertar Resultados de Búsqueda
+INSERT INTO Resultado_Busqueda (ID_Busqueda, ID_Stock) VALUES
+(1, 1),
+(2, 2);
+
+-- Consultar Usuarios
+SELECT * FROM Usuario;
+
+-- Consultar Stocks
+SELECT * FROM Stock;
+
+-- Consultar Búsquedas
+SELECT * FROM Busqueda;
+
+-- Consultar Resultados de Búsqueda
+SELECT * FROM Resultado_Busqueda;
+
+-- Borrar Resultados de Búsqueda
+DELETE FROM Resultado_Busqueda WHERE ID_Resultado = 1;
+
+-- Borrar Búsquedas
+DELETE FROM Busqueda WHERE ID_Busqueda = 1;
+
+-- Borrar Stocks
+DELETE FROM Stock WHERE ID_Stock = 1;
+
+-- Borrar Usuarios
+DELETE FROM Usuario WHERE ID_Usuario = 1;
+
+-- Verificar que los Datos han sido Borrados
+
+-- Verificar Resultados de Búsqueda
+SELECT * FROM Resultado_Busqueda WHERE ID_Resultado = 1;
+
+-- Verificar Búsquedas
+SELECT * FROM Busqueda WHERE ID_Busqueda = 1;
+
+-- Verificar Stocks
+SELECT * FROM Stock WHERE ID_Stock = 1;
+
+-- Verificar Usuarios
+SELECT * FROM Usuario WHERE ID_Usuario = 1;
