@@ -51,9 +51,11 @@ INSERT INTO Usuario (Nombre, Correo_Electronico, Contrasena) VALUES
 
 -- Insertar Stocks
 INSERT INTO Stock (Nombre, Categoria, Marca, Precio, Cantidad_Disponible, Descripcion) VALUES
-('Laptop HP', 'Electrónica', 'HP', 1200.00, 10, 'Laptop HP con 16GB RAM y 512GB SSD'),
-('Smartphone Samsung', 'Electrónica', 'Samsung', 800.00, 15, 'Samsung Galaxy S21'),
-('Televisor LG', 'Electrónica', 'LG', 600.00, 5, 'Televisor LG 55 pulgadas 4K');
+('Camiseta Nike', 'Vestimenta', 'Nike', 25.00, 50, 'Camiseta deportiva Nike de algodón'),
+('Jeans Levi\'s', 'Vestimenta', 'Levi\'s', 60.00, 30, 'Jeans clásicos Levi\'s 501'),
+('Chaqueta North Face', 'Vestimenta', 'The North Face', 120.00, 15, 'Chaqueta impermeable para invierno'),
+('Zapatos Adidas', 'Vestimenta', 'Adidas', 80.00, 40, 'Zapatos deportivos Adidas Running'),
+('Sombrero Fedora', 'Vestimenta', 'Generic', 35.00, 20, 'Sombrero de ala ancha estilo Fedora');
 
 -- Insertar Búsquedas
 INSERT INTO Busqueda (ID_Usuario, Criterio_Nombre, Criterio_Categoria, Criterio_Marca, Criterio_Precio) VALUES
