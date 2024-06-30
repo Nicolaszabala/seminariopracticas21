@@ -20,7 +20,8 @@ public class Plataforma {
 
     public Stock buscarStock(String nombreProducto) {
         for (Stock stock : listaStocks) {
-            if (stock.getNombreProducto().equals(nombreProducto)) {
+            Object Nombre = null;
+            if (stock.getNombre().equals(Nombre)) {
                 return stock;
             }
         }

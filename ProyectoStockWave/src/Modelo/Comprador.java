@@ -10,8 +10,8 @@ import java.util.List;
 public class Comprador extends Usuario implements Transaccionable {
     private List<Stock> listaCompras;
 
-    public Comprador(String nombre, String contraseña, String email) {
-        super(nombre, contraseña, email);
+    public Comprador(String nombre, String contraseña, String email, String tipo) {
+        super(nombre, contraseña, email, tipo);
         this.listaCompras = new ArrayList<>();
     }
 
@@ -30,4 +30,3 @@ public class Comprador extends Usuario implements Transaccionable {
         System.out.println("Compra realizada por: " + getNombre());
     }
 }
-

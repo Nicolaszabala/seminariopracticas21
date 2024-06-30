@@ -8,11 +8,13 @@ public abstract class Usuario {
     private String nombre;
     private String contraseña;
     private String email;
-
-    public Usuario(String nombre, String contraseña, String email) {
+    private String tipo;
+    
+    public Usuario(String nombre, String contraseña, String email, String tipo) {
         this.nombre = nombre;
         this.contraseña = contraseña;
         setEmail(email);
+        this.tipo = tipo;
     }
 
     public String getNombre() {
@@ -34,13 +36,22 @@ public abstract class Usuario {
     public String getEmail() {
         return email;
     }
+    
+     public String getTipo() {
+        return tipo;
+    }
 
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    
     public void setEmail(String email) throws IllegalArgumentException {
         if (!email.contains("@")) {
             throw new IllegalArgumentException("Correo electrónico no válido");
         }
         this.email = email;
     }
-
+    
     public abstract void autenticar();
 }
